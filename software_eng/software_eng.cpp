@@ -4,6 +4,7 @@
 //attempt to sync after closing and opening proj from laptop
 //pushing to test .txt upload
 #include <iostream>
+#include <string>
 using namespace std;
 
 class Patient

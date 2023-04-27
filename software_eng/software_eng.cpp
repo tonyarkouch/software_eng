@@ -104,7 +104,23 @@ public:
     }
 };
 
-
+class Notification 
+{
+public:
+    void ViewNotification() 
+    {
+        cout << "Hello, here are your current notifications:" << endl;
+        cout << notificationText << endl;
+    }
+    string sendNotification() 
+    {
+        cout << "What would you like to send today?" << endl;
+        getline(cin, notificationText);
+        return notificationText;
+    }
+private:
+    string notificationText;
+};
 
 
 
@@ -114,6 +130,9 @@ public:
 int main() {
     User_io io;
     io.menu_user_io();
+    Notification myNotification;
+    myNotification.sendNotification();
+    myNotification.ViewNotification();
     return 0;
 }
 

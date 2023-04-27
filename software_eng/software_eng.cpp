@@ -5,12 +5,63 @@
 #include <iostream>
 using namespace std;
 
-class user_io 
+class Patient
 {
+public:
+    void menu() {
+        int choice;
+
+        do {
+            cout << "==== Menu ====" << endl;
+            cout << "if you are booking an appointment please enter 1" << endl;
+            cout << "if you are a staff member please enter 2" << endl;
+            cout << "if you are a doctor please enter 3" << endl;
+            cout << "to exit menue please enter 4" << endl;
+            cout << "Enter your choice: ";
+            cin >> choice;
+
+            switch (choice) {
+            case 1:
+                //reserved to call patient menu function
+                break;
+            case 2:
+                //reserved to call staff member menue function
+                break;
+            case 3:
+                //reserved to call the doctor menue function
+                break;
+            case 4:
+                cout << "Thank you for visiting!" << endl;
+                break;
+            default:
+                cout << "Invalid choice! Try again." << endl;
+            }
+        } while (choice != 4);
+    }
+
+
+};
+class Doctor
+{
+
+
+
+};
+class Staff_member
+{
+
+
+
+};
+
+class User_io 
+{
+
  public:
     
     // Menu function
     void menu() {
+        Patient patient;
         int choice;
 
         do {
@@ -25,6 +76,7 @@ class user_io
             switch (choice) {
             case 1:
                 //reserved to call patient menu function
+                patient.menu();
                 break;
             case 2:
                //reserved to call staff member menue function
@@ -42,26 +94,10 @@ class user_io
     }
 };
 
-class patient
-{
 
-
-};
-class doctor 
-{
-
-
-
-};
-class Staff_member
-{
-
-
-
-};
 
 int main() {
-    user_io io;
+    User_io io;
     io.menu();
     return 0;
 }

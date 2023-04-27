@@ -1,5 +1,5 @@
 //tony was here
-
+//fatima was here
 //attempt to sync from laptop
 //attempt to sync after closing and opening proj from laptop
 //pushing to test .txt upload
@@ -15,12 +15,12 @@ public:
 
         do {
             cout << "==== Welcome Patient ====" << endl;
-            cout << "if you are booking an appointment please enter 1" << endl;
-            cout << "if you need to enter information please enter 2" << endl;
-            cout << "if you are updating existing information please enter 3" << endl;
-            cout << "if you are sending notifications or sending a new notification please enter 4" << endl;
-            cout << " if you are checking in please enter 5" << endl;
-            cout << "to return to previous menu please enter 6" << endl;
+            cout << "If you are booking an appointment please enter 1" << endl;
+            cout << "If you need to enter information please enter 2" << endl;
+            cout << "If you are updating existing information please enter 3" << endl;
+            cout << "If you are sending notifications or sending a new notification please enter 4" << endl;
+            cout << "If you are checking in please enter 5" << endl;
+            cout << "To return to previous menu please enter 6" << endl;
             cout << "Enter your choice: ";
             cin >> choice;
 
@@ -50,12 +50,14 @@ public:
 
 
 };
+
 class Doctor
 {
 
 
 
 };
+
 class Staff_member
 {
 
@@ -63,6 +65,23 @@ class Staff_member
 
 };
 
+class Notification 
+{
+public:
+    void ViewNotification() 
+    {
+        cout << "Hello, here are your current notifications:" << endl;
+        cout << notificationText << endl;
+    }
+    string sendNotification() 
+    {
+        cout << "What would you like to send today?" << endl;
+        getline(cin, notificationText);
+        return notificationText;
+    }
+private:
+    string notificationText;
+};
 
 class User_io
 {
@@ -104,6 +123,7 @@ public:
     }
 };
 
+<<<<<<< Updated upstream
 class Notification 
 {
 public:
@@ -126,6 +146,8 @@ private:
 
 
 
+=======
+>>>>>>> Stashed changes
 
 int main() {
     User_io io;
@@ -135,8 +157,6 @@ int main() {
     myNotification.ViewNotification();
     return 0;
 }
-
-
 
 
 

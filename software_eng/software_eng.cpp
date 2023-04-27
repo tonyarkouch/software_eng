@@ -2,8 +2,9 @@
 #include <iostream>
 using namespace std;
 
-class user_io {
-public:
+class user_io 
+{
+ public:
     
     // Menu function
     void menu() {
@@ -36,6 +37,24 @@ public:
             }
         } while (choice != 4);
     }
+};
+
+class patient
+{
+
+
+};
+class doctor 
+{
+
+
+
+};
+class Staff_member
+{
+
+
+
 };
 
 int main() {

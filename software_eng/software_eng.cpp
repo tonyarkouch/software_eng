@@ -8,35 +8,42 @@ using namespace std;
 class Patient
 {
 public:
-    void menu() {
+    void menu_patient() {
         int choice;
 
         do {
-            cout << "==== Menu ====" << endl;
+            cout << "==== Welcome Patient ====" << endl;
             cout << "if you are booking an appointment please enter 1" << endl;
-            cout << "if you are a staff member please enter 2" << endl;
-            cout << "if you are a doctor please enter 3" << endl;
-            cout << "to exit menue please enter 4" << endl;
+            cout << "if you need to enter information please enter 2" << endl;
+            cout << "if you are updating existing information please enter 3" << endl;
+            cout << "if you are sending notifications or sending a new notification please enter 4" << endl;
+            cout << " if you are checking in please enter 5" << endl;
+            cout << "to return to previous menu please enter 6" << endl;
             cout << "Enter your choice: ";
             cin >> choice;
 
             switch (choice) {
             case 1:
-                //reserved to call patient menu function
+                //reserved to call appt set function
                 break;
             case 2:
-                //reserved to call staff member menue function
+                //reserved to call information enter function
                 break;
             case 3:
-                //reserved to call the doctor menue function
+                //reserved to call information update menu function
                 break;
             case 4:
+                //reserved to call notification function
+            case 5:
+                //resereved to call check in function
+                break;
+            case 6:
                 cout << "Thank you for visiting!" << endl;
                 break;
             default:
                 cout << "Invalid choice! Try again." << endl;
             }
-        } while (choice != 4);
+        } while (choice != 6);
     }
 
 
@@ -54,13 +61,14 @@ class Staff_member
 
 };
 
-class User_io 
+
+class User_io
 {
 
- public:
-    
+public:
+
     // Menu function
-    void menu() {
+    void menu_user_io() {
         Patient patient;
         int choice;
 
@@ -76,10 +84,10 @@ class User_io
             switch (choice) {
             case 1:
                 //reserved to call patient menu function
-                patient.menu();
+                patient.menu_patient();
                 break;
             case 2:
-               //reserved to call staff member menue function
+                //reserved to call staff member menue function
                 break;
             case 3:
                 //reserved to call the doctor menue function
@@ -96,9 +104,14 @@ class User_io
 
 
 
+
+
+
+
+
 int main() {
     User_io io;
-    io.menu();
+    io.menu_user_io();
     return 0;
 }
 

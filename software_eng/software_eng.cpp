@@ -195,7 +195,52 @@ int main() {
     myNotification.ViewNotification();
     return 0;
 }
+class Appointment {
+private:
+    string doctorAppointments;
+    string appointmentDate;
+    string appointmentTime;
+public:
+    // Constructor
+    Appointment(string docAppointments, string appDate, string appTime) {
+        doctorAppointments = docAppointments;
+        appointmentDate = appDate;
+        appointmentTime = appTime;
+    }
 
+    // Function to get available date and time
+    string getAvailableDateAndTime() {
+
+        return "Available date and time";
+    }
+
+    // Function to view appointment
+    void appointment_view(string lastName, string firstName) {
+
+        cout << "Appointment details for " << lastName << ", " << firstName << ":" << endl;
+        cout << "Doctor: " << doctorAppointments << endl;
+        cout << "Date: " << appointmentDate << endl;
+        cout << "Time: " << appointmentTime << endl;
+    }
+
+    // Function to check appointment status
+    void appointment_status() {
+
+        cout << "Appointment status: Confirmed" << endl;
+    }
+
+    // Function to edit appointment
+    void edit_appointment() {
+
+        cout << "Appointment information edited successfully" << endl;
+    }
+};
+
+// Function to set appointment
+void appointment_set(string getDate, int getTime) {
+
+    cout << "Appointment set successfully" << endl;
+}
 
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

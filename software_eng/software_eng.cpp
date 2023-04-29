@@ -12,6 +12,7 @@
 #include <cstdlib>
 
 using namespace std;
+using std::cout;
 
 
 vector<vector<string>> fileVector(const char* csv_name)
@@ -160,8 +161,7 @@ public:
         } while (choice != 4);
     }
 };
-
-<<<<<<< Updated upstream
+/*<<<<<<< Updated upstream
 class Notification 
 {
 public:
@@ -185,7 +185,7 @@ private:
 
 
 =======
->>>>>>> Stashed changes
+>>>>>>> Stashed changes*/
 
 int main() {
     User_io io;

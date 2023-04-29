@@ -46,6 +46,33 @@ vector<vector<string>> fileVector(const char* csv_name)
 
 }
 
+template<class T>
+void updateFile(vector<vector<T>> v, string file_Name)
+{
+
+    ofstream fileName;
+    fileName.open(file_Name);
+
+    if (fileName.good())
+    {
+        for (auto& row : v)
+        {
+            for (auto col : row)
+            {
+                fileName << col << ',';
+            }
+            fileName << '\n';
+        }
+    }
+    else
+    {
+        cout << "File not found";
+    }
+
+    //tried closing file but was being weird
+
+}
+
 class Patient
 {
 public:

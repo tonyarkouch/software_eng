@@ -10,6 +10,7 @@
 #include <vector>
 #include <sstream>
 #include <cstdlib>
+#include <limits>
 
 using namespace std;
 using std::cout;
@@ -45,183 +46,101 @@ vector<vector<string>> fileVector(const char* csv_name)
     return data;
 
 }
-
-template<class T>
-void updateFile(vector<vector<T>> v, string file_Name)
+class User_information
 {
+private:
+    string patient_information;
 
-    ofstream fileName;
-    fileName.open(file_Name);
+    // Helper function to read the CSV file and return a 2D vector containing its data
+    vector<vector<string>> fileVector() {
+        ifstream fileName(patient_information);
+        string line;
+        vector<vector<string>> data;
 
-    if (fileName.good())
-    {
-        for (auto& row : v)
-        {
-            for (auto col : row)
-            {
-                fileName << col << ',';
+        while (getline(fileName, line)) {
+            stringstream ss(line);
+            vector<string> row;
+            string cell;
+
+            while (getline(ss, cell, ',')) {
+                row.push_back(cell);
             }
-            fileName << '\n';
+
+            data.push_back(row);
+        }
+
+        fileName.close();
+        return data;
+    }
+
+public:
+
+    //defult constructor
+    User_information() {}
+    // Constructor: Initialize the Information object with the given CSV file name
+    User_information(const string& patient_information) : patient_information(patient_information) {}
+
+    // Method to enter new information into the CSV file using user input
+    void enter_information() {
+        ofstream fileName;
+        fileName.open(patient_information, ios::app); // Open the file in append mode
+
+        cout << "Enter the information separated by commas (e.g., John,Doe,123 Main St,johndoe@example.com): ";
+        string input;
+        getline(cin, input);
+
+        fileName << input << "\n";
+        fileName.close();
+    }
+
+    // Method to read the information from the CSV file
+    void read_information() {
+        vector<vector<string>> data = fileVector();
+
+        for (const auto& row : data) {
+            for (size_t i = 0; i < row.size(); ++i) {
+                cout << row[i];
+                if (i < row.size() - 1) {
+                    cout << ", ";
+                }
+            }
+            cout << endl;
         }
     }
-    else
-    {
-        cout << "File not found";
-    }
 
-    //tried closing file but was being weird
+    // Method to edit information in the CSV file at a specified row and column using user input
+    void edit_information() {
+        vector<vector<string>> data = fileVector();
+        size_t row, col;
+        string new_value;
 
-}
+        cout << "Enter the row and column indices (starting from 0) of the information you want to edit, separated by a space: ";
+        cin >> row >> col;
+        cin.ignore(); // Ignore any remaining newline characters in the input buffer
 
-class Patient
-{
-public:
-    void menu_patient() {
-        int choice;
+        cout << "Enter the new value: ";
+        getline(cin, new_value);
 
-        do {
-            cout << "==== Welcome Patient ====" << endl;
-            cout << "If you are booking an appointment please enter 1" << endl;
-            cout << "If you need to enter information please enter 2" << endl;
-            cout << "If you are updating existing information please enter 3" << endl;
-            cout << "If you are sending notifications or sending a new notification please enter 4" << endl;
-            cout << "If you are checking in please enter 5" << endl;
-            cout << "To return to previous menu please enter 6" << endl;
-            cout << "Enter your choice: ";
-            cin >> choice;
+        data[row][col] = new_value;
 
-            switch (choice) {
-            case 1:
-                //reserved to call appt set function
-                break;
-            case 2:
-                //reserved to call information enter function
-                break;
-            case 3:
-                //reserved to call information update menu function
-                break;
-            case 4:
-                //reserved to call notification function
-            case 5:
-                //resereved to call check in function
-                break;
-            case 6:
-                cout << "Thank you for visiting!" << endl;
-                break;
-            default:
-                cout << "Invalid choice! Try again." << endl;
+        ofstream fileName;
+        fileName.open(patient_information); // Open the file in write mode (overwrite existing content)
+
+        for (const auto& row : data) {
+            for (size_t i = 0; i < row.size(); ++i) {
+                fileName << row[i];
+                if (i < row.size() - 1) {
+                    fileName << ",";
+                }
             }
-        } while (choice != 6);
-    }
+            fileName << "\n";
+        }
 
+        fileName.close();
+    }
 
 };
 
-class Doctor
-{
-
-
-
-};
-
-class Staff_member
-{
-
-
-
-};
-
-class Notification 
-{
-public:
-    void ViewNotification() 
-    {
-        cout << "Hello, here are your current notifications:" << endl;
-        cout << notificationText << endl;
-    }
-    string sendNotification() 
-    {
-        cout << "What would you like to send today?" << endl;
-        getline(cin, notificationText);
-        return notificationText;
-    }
-private:
-    string notificationText;
-};
-
-class User_io
-{
-
-public:
-
-    // Menu function
-    void menu_user_io() {
-        Patient patient;
-        int choice;
-
-        do {
-            cout << "==== Menu ====" << endl;
-            cout << "if you are a patient please enter 1" << endl;
-            cout << "if you are a staff member please enter 2" << endl;
-            cout << "if you are a doctor please enter 3" << endl;
-            cout << "to exit menue please enter 4" << endl;
-            cout << "Enter your choice: ";
-            cin >> choice;
-
-            switch (choice) {
-            case 1:
-                //reserved to call patient menu function
-                patient.menu_patient();
-                break;
-            case 2:
-                //reserved to call staff member menue function
-                break;
-            case 3:
-                //reserved to call the doctor menue function
-                break;
-            case 4:
-                cout << "Thank you for visiting!" << endl;
-                break;
-            default:
-                cout << "Invalid choice! Try again." << endl;
-            }
-        } while (choice != 4);
-    }
-};
-/*<<<<<<< Updated upstream
-class Notification 
-{
-public:
-    void ViewNotification() 
-    {
-        cout << "Hello, here are your current notifications:" << endl;
-        cout << notificationText << endl;
-    }
-    string sendNotification() 
-    {
-        cout << "What would you like to send today?" << endl;
-        getline(cin, notificationText);
-        return notificationText;
-    }
-private:
-    string notificationText;
-};
-
-
-
-
-
-=======
->>>>>>> Stashed changes*/
-
-int main() {
-    User_io io;
-    io.menu_user_io();
-    Notification myNotification;
-    myNotification.sendNotification();
-    myNotification.ViewNotification();
-    return 0;
-}
 class Appointment {
 private:
     string doctorAppointments;
@@ -268,6 +187,220 @@ void appointment_set(string getDate, int getTime) {
 
     cout << "Appointment set successfully" << endl;
 }
+
+class Patient
+{
+public:
+    void menu_patient() 
+    {
+        int choice;
+        User_information info_patient("patient_information.csv");
+
+        while (true) {
+            cout << "==== Welcome Patient ====" << endl;
+            cout << "If you are booking an appointment please enter 1" << endl;
+            cout << "If you need to enter information please enter 2" << endl;
+            cout << "If you are updating existing information please enter 3" << endl;
+            cout << "If you are sending notifications or sending a new notification please enter 4" << endl;
+            cout << "If you are checking in please enter 5" << endl;
+            cout << "To return to previous menu please enter 6" << endl;
+            cout << "Enter your choice: ";
+            cin >> choice;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            switch (choice) {
+            case 1:
+                //reserved to call appt set function
+               
+                break;
+            case 2:
+                //reserved to call information enter function
+                return info_patient.enter_information();
+            case 3:
+                //reserved to call information update information function
+                info_patient.edit_information();               
+                break;
+            case 4:
+                //reserved to call notification function               
+            case 5:
+                //resereved to call check in function               
+                break;
+            case 6:
+                cout << "Thank you for visiting!" << endl; 
+                break;
+            default:
+                cout << "Invalid choice! Try again." << endl;
+            }
+        }
+        
+    } 
+    
+
+
+};
+
+class Doctor
+{
+public:
+    void menu_doctor() {
+        int choice;
+        User_information info_doctor("patient_information.csv");
+
+        while(true) {
+            cout << "==== Welcome Doctor ====" << endl;
+            cout << "If you are checking appointments please enter 1" << endl;
+            cout << "If you need to enter information please enter 2" << endl;
+            cout << "If you are updating existing information please enter 3" << endl;
+            cout << "If you are sending notifications or sending a new notification please enter 4" << endl;
+            cout << "if you need to update an appointment please enter 5" << endl;
+            cout << "To return to previous menu please enter 6" << endl;
+            cout << "Enter your choice: ";
+            cin >> choice;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+            switch (choice) {
+            case 1:
+                //reserved to call appt set function
+                break;
+            case 2:
+                //reserved to call information enter function
+                info_doctor.enter_information();
+                return;
+                break;
+            case 3:
+                //reserved to call information update menu function
+                info_doctor.edit_information();
+                break;
+            case 4:
+                //reserved for send notification funtion
+                break;
+            case 5:
+                //reserved for update information funtion
+                break;
+            case 6:
+                cout << "Thank you for visiting!" << endl;
+                break;
+            default:
+                cout << "Invalid choice! Try again." << endl;
+            }
+        }
+
+
+};
+
+class Staff_member
+{
+public:
+    void menu_staff_member() {
+        int choice;
+
+        while(true) {
+            cout << "==== Welcome Staff Member ====" << endl;
+            cout << "If you are checking appointments please enter 1" << endl;
+            cout << "If you need to enter information please enter 2" << endl;
+            cout << "If you are updating existing information please enter 3" << endl;
+            cout << "If you are checking notifications or sending a new notification please enter 4" << endl;
+            cout << "if you need to update an appointment please enter 5" << endl;
+            cout << "To return to previous menu please enter 6" << endl;
+            cout << "Enter your choice: ";
+            cin >> choice;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+            switch (choice) {
+            case 1:
+                //reserved to call appt set function
+                break;
+            case 2:
+                //reserved to call information enter function
+                break;
+            case 3:
+                //reserved to call information update menu function
+                break;
+            case 4:
+                //reserved to call notification function
+            case 5:
+                //resereved to call update information function
+                break;
+            case 6:
+                cout << "Thank you for visiting!" << endl;
+                break;
+            default:
+                cout << "Invalid choice! Try again." << endl;
+            }
+        } while (choice != 6);
+    }
+
+
+
+};
+
+class Notification 
+{
+public:
+    void ViewNotification() 
+    {
+        cout << "Hello, here are your current notifications:" << endl;
+        cout << notificationText << endl;
+    }
+    string sendNotification() 
+    {
+        cout << "What would you like to send today?" << endl;
+        getline(cin, notificationText);
+        return notificationText;
+    }
+private:
+    string notificationText;
+};
+
+class User_io
+{
+
+public:
+
+    // Menu function
+    void menu_user_io() {
+        Patient patient;
+        int choice;
+
+        while(true){
+            cout << "==== Menu ====" << endl;
+            cout << "if you are a patient please enter 1" << endl;
+            cout << "if you are a staff member please enter 2" << endl;
+            cout << "if you are a doctor please enter 3" << endl;
+            cout << "to exit menue please enter 4" << endl;
+            cout << "Enter your choice: ";
+            cin >> choice;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            switch (choice) {
+            case 1:
+                //reserved to call patient menu function
+                patient.menu_patient();
+                return;
+                break;
+            case 2:
+                //reserved to call staff member menue function
+                break;
+            case 3:
+                //reserved to call the doctor menue function
+                break;
+            case 4:
+                cout << "Thank you for visiting!" << endl;
+                break;
+            default:
+                cout << "Invalid choice! Try again." << endl;
+            }
+        } 
+    }
+};
+int main() {
+    User_io io;
+    User_information x("patient_information.csv");
+    io.menu_user_io();
+   //Notification myNotification;
+   // myNotification.sendNotification();
+   // myNotification.ViewNotification();
+    return 0;
+}
+
 
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

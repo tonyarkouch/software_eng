@@ -6,10 +6,18 @@
 #include <cstdlib>
 #include <limits>
 #include "User_information.h"
-#include"Doctor.h"
+#include"Doctor.h" 
+#include"Appointment.h"
+#include "Notifications.h"
+#include "User_io.h"
 
 using namespace std;
 
+Appointment appt_doc;
+Notifications notification_doc;
+vector<Appointment> appointments;
+Appointment appointment_obj;
+User_io user_io;
 
 
 void Doctor:: menu_doctor()
@@ -22,16 +30,18 @@ void Doctor:: menu_doctor()
         cout << "If you are checking appointments please enter 1" << endl;
         cout << "If you need to enter information please enter 2" << endl;
         cout << "If you are updating existing information please enter 3" << endl;
-        cout << "If you are sending notifications or sending a new notification please enter 4" << endl;
-        cout << "if you need to update an appointment please enter 5" << endl;
-        cout << "To return to previous menu please enter 6" << endl;
+        cout << "If you are send Notification please enter 4" << endl;
+        cout << "if you need to check appointment status please enter 5" << endl;
+        cout << "if you need to check pending Notifications Please enter 6" << endl;
+        cout << "To return to previous menu please enter 7" << endl;
         cout << "Enter your choice: ";
         cin >> choice;
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
         switch (choice) {
         case 1:
-            //reserved to call appt set function
+            //reserved to call appt view function
+            appt_doc.appointment_view(appointments);
             break;
         case 2:
             //reserved to call information enter function
@@ -43,13 +53,16 @@ void Doctor:: menu_doctor()
             break;
         case 4:
             //reserved for send notification funtion
+            notification_doc.sendNotificationsPatients();
             break;
         case 5:
-            //reserved for update information funtion
-            break;
+            appt_doc.appointment_status(appointments);
         case 6:
-            cout << "Thank you for visiting!" << endl;
+            //reserved for Check notification function
+            notification_doc.viewNotificationsDoctors();
             break;
+        case 7:
+c
         default:
             cout << "Invalid choice! Try again." << endl;
         }

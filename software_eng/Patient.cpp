@@ -61,7 +61,6 @@ void Patient::menu_patient()
             appointment_obj.appointment_status(appointments);
             break;
         case 7:
-            cout << "Thank you for visiting!" << endl;
             user_io.menu_user_io();
             return;
         default:

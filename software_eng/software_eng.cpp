@@ -245,7 +245,7 @@ public:
         int choice;
         User_information info_doctor("patient_information.csv");
 
-        while(true) {
+        while (true) {
             cout << "==== Welcome Doctor ====" << endl;
             cout << "If you are checking appointments please enter 1" << endl;
             cout << "If you need to enter information please enter 2" << endl;
@@ -283,6 +283,7 @@ public:
                 cout << "Invalid choice! Try again." << endl;
             }
         }
+    }
 
 
 };

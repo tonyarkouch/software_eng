@@ -210,7 +210,6 @@ public:
             switch (choice) {
             case 1:
                 //reserved to call appt set function
-               
                 break;
             case 2:
                 //reserved to call information enter function
@@ -294,6 +293,7 @@ class Staff_member
 public:
     void menu_staff_member() {
         int choice;
+        User_information info_staff_memeber("patient_information.csv");
 
         while(true) {
             cout << "==== Welcome Staff Member ====" << endl;
@@ -313,9 +313,11 @@ public:
                 break;
             case 2:
                 //reserved to call information enter function
+                info_staff_memeber.enter_information();
                 break;
             case 3:
                 //reserved to call information update menu function
+                info_staff_memeber.edit_information();
                 break;
             case 4:
                 //reserved to call notification function
@@ -397,9 +399,9 @@ int main() {
     //User_io io;
     //User_information x("patient_information.csv");
     //io.menu_user_io();
-    Notification myNotification;
-    myNotification.sendNotification();
-    myNotification.ViewNotification();
+    //Notification myNotification;
+    //myNotification.sendNotification();
+    //myNotification.ViewNotification();
     return 0;
 }
 

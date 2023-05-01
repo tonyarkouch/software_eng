@@ -214,13 +214,15 @@ public:
                 break;
             case 2:
                 //reserved to call information enter function
-                return info_patient.enter_information();
+                 info_patient.enter_information();
+                 break;
             case 3:
                 //reserved to call information update information function
                 info_patient.edit_information();               
                 break;
             case 4:
-                //reserved to call notification function               
+                //reserved to call notification function
+                info_patient.read_information();
             case 5:
                 //resereved to call check in function               
                 break;
@@ -264,7 +266,6 @@ public:
             case 2:
                 //reserved to call information enter function
                 info_doctor.enter_information();
-                return;
                 break;
             case 3:
                 //reserved to call information update menu function

@@ -51,10 +51,10 @@ void Patient::menu_patient()
             break;
         case 4:
             //reserved to call send notification function
-            notification_obj.sendNotifications();
+            notification_obj.sendNotificationsDoctors();
         case 5:
             //resereved to call view notifications in function
-            notification_obj.viewNotifications();
+            notification_obj.viewNotificationsPatients();
             break;
         case 6:
             //reserved to call appointment status funtion

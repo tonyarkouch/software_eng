@@ -131,7 +131,7 @@ void Appointment::appointment_view(vector<Appointment>& appointments) {
         cout << "Appointments for " << firstName << " " << lastName << ":" << endl;
         for (auto& appointment : matchingAppointments) {
             // Code to retrieve doctor name for the appointment
-            cout << "Doctor: " << "Dr. " << " | Date: " << appointment.getAppointmentDate() << " | Time: " << appointment.getAppointmentTime() << ":00" << endl;
+            cout <<" | Date: " << appointment.getAppointmentDate() << " | Time: " << appointment.getAppointmentTime() << ":00" << endl;
         }
     }
 }

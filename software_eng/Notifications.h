@@ -10,9 +10,10 @@ private:
     string notificationText;
 public:
     
-    void viewNotifications();
-    string sendNotifications();
-
+    void viewNotificationsDoctors();
+    void sendNotificationsDoctors();
+    void viewNotificationsPatients();
+    void sendNotificationsPatients();
 };
 
 

@@ -46,17 +46,41 @@ void User_information::read_information() {
 // Method to edit information in the CSV file at a specified row and column using user input
 void User_information::edit_information() {
     vector<vector<string>> data = fileVector();
-    size_t row, col;
+    string firstName;
     string new_value;
 
-    cout << "Enter the row and column indices (starting from 0) of the information you want to edit, separated by a space: ";
-    cin >> row >> col;
+    cout << "Enter the first name you want to search for: ";
+    cin >> firstName;
     cin.ignore(); // Ignore any remaining newline characters in the input buffer
 
-    cout << "Enter the new value: ";
-    getline(cin, new_value);
+    // Find the row with the matching first name
+    int row = -1;
+    for (size_t r = 1; r < data.size(); ++r) {
+        if (data[r][0] == firstName) {
+            row = static_cast<int>(r);
+            break;
+        }
+    }
 
-    data[row][col] = new_value;
+    if (row == -1) {
+        cout << "No matching first name found." << endl;
+        return;
+    }
+
+    // Prompt the user to edit each cell in the found row
+    for (size_t col = 0; col < data[static_cast<size_t>(row)].size(); ++col) {
+        char edit;
+        cout << "Current value at column " << col << ": " << data[static_cast<size_t>(row)][col] << endl;
+        cout << "Do you want to edit this value? (y/n): ";
+        cin >> edit;
+        cin.ignore(); // Ignore any remaining newline characters in the input buffer
+
+        if (edit == 'y' || edit == 'Y') {
+            cout << "Enter the new value: ";
+            getline(cin, new_value);
+            data[static_cast<size_t>(row)][col] = new_value;
+        }
+    }
 
     ofstream fileName;
     fileName.open(patient_information); // Open the file in write mode (overwrite existing content)

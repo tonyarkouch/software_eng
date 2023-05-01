@@ -1,9 +1,3 @@
-//tony was here
-//fatima was here
-// The homie Jesus was here
-//attempt to sync from laptop
-//attempt to sync after closing and opening proj from laptop
-//pushing to test .txt upload
 #include <iostream>
 #include <string>
 #include <fstream>

@@ -394,12 +394,12 @@ public:
     }
 };
 int main() {
-    User_io io;
-    User_information x("patient_information.csv");
-    io.menu_user_io();
-   //Notification myNotification;
-   // myNotification.sendNotification();
-   // myNotification.ViewNotification();
+    //User_io io;
+    //User_information x("patient_information.csv");
+    //io.menu_user_io();
+    Notification myNotification;
+    myNotification.sendNotification();
+    myNotification.ViewNotification();
     return 0;
 }
 

@@ -33,6 +33,42 @@ string Appointment::getPatientFirstName() {
 string Appointment::getPatientLastName() {
     return patientLastName;
 }
+void Appointment::saveAppointmentsToFile(const vector<Appointment>& appointments) {
+    ofstream outFile("appointments.txt");
+    for (const auto& appointment : appointments) {
+        outFile << appointment.doctorAReratments << ','
+            << appointment.appointmentDate << ','
+            << appointment.appointmentTime << ','
+            << appointment.patientFirstName << ','
+            << appointment.patientLastName << '\n';
+    }
+    outFile.close();
+}
+
+vector<Appointment> Appointment::loadAppointmentsFromFile() {
+    vector<Appointment> appointments;
+    ifstream inFile("appointments.txt");
+    string line;
+    while (getline(inFile, line)) {
+        stringstream ss(line);
+        Appointment appointment;
+        string field;
+        getline(ss, field, ',');
+        appointment.doctorAReratments = stoi(field);
+        getline(ss, field, ',');
+        appointment.appointmentDate = field;
+        getline(ss, field, ',');
+        appointment.appointmentTime = field;
+        getline(ss, field, ',');
+        appointment.patientFirstName = field;
+        getline(ss, field, ',');
+        appointment.patientLastName = field;
+        appointments.push_back(appointment);
+    }
+    inFile.close();
+    return appointments;
+}
+
 
 void Appointment::appointment_set(vector<Appointment>& appointments) {
     string appointmentDate, patientFirstName, patientLastName;
@@ -63,6 +99,7 @@ void Appointment::appointment_set(vector<Appointment>& appointments) {
         cin >> doctorName;
         // Code to confirm and save the appointment
         appointments.push_back(Appointment(1, appointmentDate, to_string(appointmentTime), patientFirstName, patientLastName));
+        saveAppointmentsToFile(appointments);
         cout << "Appointment set for " << doctorName << " on " << appointmentDate << " at " << appointmentTime << ":00 for " << patientFirstName << " " << patientLastName << endl;
     }
     else {
@@ -71,6 +108,7 @@ void Appointment::appointment_set(vector<Appointment>& appointments) {
 }
 
 void Appointment::appointment_view(vector<Appointment>& appointments) {
+    appointments = loadAppointmentsFromFile();
     string firstName, lastName;
     cout << "Enter the patient's first name: ";
     cin >> firstName;
@@ -99,6 +137,7 @@ void Appointment::appointment_view(vector<Appointment>& appointments) {
 }
 
 void Appointment::appointment_status(vector<Appointment>& appointments) {
+    appointments = loadAppointmentsFromFile();
     string appointmentDate;
     cout << "Enter the date of the appointment (MM/DD/YYYY): ";
     cin >> appointmentDate;

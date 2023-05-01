@@ -24,6 +24,8 @@ public:
     string getPatientFirstName();
     string getPatientLastName();
 
+    void saveAppointmentsToFile(const vector<Appointment>& appointments);
+    vector <Appointment> loadAppointmentsFromFile();
 
 // Function to set an appointment
     void appointment_set(vector<Appointment>& appointments);

@@ -13,11 +13,6 @@
 
 
 
-Appointment appt_staff;
-Notifications notification_staff;
-vector<Appointment> appointments;
-Appointment appointment_obj;
-User_io user_io;
 
 
 using namespace std;
@@ -27,6 +22,12 @@ using namespace std;
 void Staff_member::menu_staff_member() {
     int choice;
     User_information info_staff_memeber("patient_information.csv");
+    Appointment appt_staff;
+    Notifications notification_staff;
+    vector<Appointment> appointments_staff;
+    Appointment appointment_obj;
+    User_io user_io;
+
 
     while (true) {
         cout << "==== Welcome Staff Member ====" << endl;
@@ -44,14 +45,14 @@ void Staff_member::menu_staff_member() {
         switch (choice) {
         case 1:
             //reserved to call appt status function
-            appt_staff.appointment_status(appointments);
+            appt_staff.appointment_status(appointments_staff);
             break;
         case 2:
             //reserved to call information enter function
             info_staff_memeber.enter_information();
             break;
         case 3:
-            appt_staff.appointment_set(appointments);
+            appt_staff.appointment_set(appointments_staff);
             break;
         case 4:
             //reserved to call information update menu function

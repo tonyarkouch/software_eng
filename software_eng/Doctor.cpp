@@ -13,17 +13,18 @@
 
 using namespace std;
 
-Appointment appt_doc;
-Notifications notification_doc;
-vector<Appointment> appointments;
-Appointment appointment_obj;
-User_io user_io;
+
 
 
 void Doctor:: menu_doctor()
 {
     int choice;
     User_information info_doctor("patient_information.csv");
+    Appointment appt_doc;
+    Notifications notification_doc;
+    vector<Appointment> appointments;
+    Appointment appointment_obj;
+    User_io user_io;
 
     while (true) {
         cout << "==== Welcome Doctor ====" << endl;
@@ -62,7 +63,8 @@ void Doctor:: menu_doctor()
             notification_doc.viewNotificationsDoctors();
             break;
         case 7:
-c
+            user_io.menu_user_io();
+            return;
         default:
             cout << "Invalid choice! Try again." << endl;
         }

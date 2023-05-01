@@ -32,7 +32,6 @@ void User_io::menu_user_io() {
         case 1:
             //reserved to call patient menu function
             patient.menu_patient();
-            return;
             break;
         case 2:
             //reserved to call staff member menue function
@@ -44,7 +43,7 @@ void User_io::menu_user_io() {
             break;
         case 4:
             cout << "Thank you for visiting!" << endl;
-            return;
+            return ;
         default:
             cout << "Invalid choice! Try again." << endl;
         }

@@ -141,51 +141,168 @@ public:
 
 };
 
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+// Class for Appointment
 class Appointment {
 private:
-    string doctorAppointments;
+    int doctorAReratments;
     string appointmentDate;
     string appointmentTime;
+    string patientFirstName;
+    string patientLastName;
 public:
-    // Constructor
-    Appointment(string docAppointments, string appDate, string appTime) {
-        doctorAppointments = docAppointments;
-        appointmentDate = appDate;
-        appointmentTime = appTime;
+    Appointment(int doctorAReratments, string appointmentDate, string appointmentTime, string patientFirstName, string patientLastName) {
+        this->doctorAReratments = doctorAReratments;
+        this->appointmentDate = appointmentDate;
+        this->appointmentTime = appointmentTime;
+        this->patientFirstName = patientFirstName;
+        this->patientLastName = patientLastName;
     }
-
-    // Function to get available date and time
-    string getAvailableDateAndTime() {
-
-        return "Available date and time";
+    string getAppointmentDate() {
+        return appointmentDate;
     }
-
-    // Function to view appointment
-    void appointment_view(string lastName, string firstName) {
-
-        cout << "Appointment details for " << lastName << ", " << firstName << ":" << endl;
-        cout << "Doctor: " << doctorAppointments << endl;
-        cout << "Date: " << appointmentDate << endl;
-        cout << "Time: " << appointmentTime << endl;
+    string getAppointmentTime() {
+        return appointmentTime;
     }
-
-    // Function to check appointment status
-    void appointment_status() {
-
-        cout << "Appointment status: Confirmed" << endl;
+    string getPatientFirstName() {
+        return patientFirstName;
     }
-
-    // Function to edit appointment
-    void edit_appointment() {
-
-        cout << "Appointment information edited successfully" << endl;
+    string getPatientLastName() {
+        return patientLastName;
     }
 };
 
-// Function to set appointment
-void appointment_set(string getDate, int getTime) {
+// Function to set an appointment
+void appointment_set(vector<Appointment>& appointments) {
+    string appointmentDate, patientFirstName, patientLastName;
+    int appointmentTime;
+    cout << "Enter the date for the appointment (MM/DD/YYYY): ";
+    cin >> appointmentDate;
+    cout << "Enter the time for the appointment (1-24): ";
+    cin >> appointmentTime;
+    cout << "Enter the patient's first name: ";
+    cin >> patientFirstName;
+    cout << "Enter the patient's last name: ";
+    cin >> patientLastName;
 
-    cout << "Appointment set successfully" << endl;
+    // Check if the requested appointment time is available
+    bool available = true;
+    for (auto& appointment : appointments) {
+        if (appointment.getAppointmentDate() == appointmentDate &&
+            stoi(appointment.getAppointmentTime()) == appointmentTime) {
+            available = false;
+            break;
+        }
+    }
+
+    if (available) {
+        cout << "The following doctors are available for the requested time:" << endl;
+        cout << "-----------------\n1. Arkouch\n2. Centeno\n3. Lozano\n4. Tanvir\n-----------------" << endl;
+        cout << "Enter the name of the doctor: ";
+        string doctorName;
+        cin >> doctorName;
+        // Code to confirm and save the appointment
+        appointments.push_back(Appointment(1, appointmentDate, to_string(appointmentTime), patientFirstName, patientLastName));
+        cout << "Appointment set for " << doctorName << " on " << appointmentDate << " at " << appointmentTime << ":00 for " << patientFirstName << " " << patientLastName << endl;
+    }
+    else {
+        cout << "The requested time is not available. Please choose a different time." << endl;
+    }
+}
+
+// Function to view appointment information
+void appointment_view(vector<Appointment>& appointments) {
+    string firstName, lastName;
+    cout << "Enter the patient's first name: ";
+    cin >> firstName;
+    cout << "Enter the patient's last name: ";
+    cin >> lastName;
+
+    // Search for appointments with matching patient name
+    vector<Appointment> matchingAppointments;
+    for (auto& appointment : appointments) {
+        // Code to retrieve patient name for the appointment
+        if (true /* Check if patient name matches */) {
+            matchingAppointments.push_back(appointment);
+        }
+    }
+
+    if (matchingAppointments.empty()) {
+        cout << "No appointments found for " << firstName << " " << lastName << endl;
+    }
+    else {
+        cout << "Appointments for " << firstName << " " << lastName << ":" << endl;
+        for (auto& appointment : matchingAppointments) {
+            // Code to retrieve doctor name for the appointment
+            cout << "Doctor: " << "Dr. " << " | Date: " << appointment.getAppointmentDate() << " | Time: " << appointment.getAppointmentTime() << ":00" << endl;
+        }
+    }
+}
+
+// Function to check appointment status
+void appointment_status(vector<Appointment>& appointments) {
+    string appointmentDate;
+    cout << "Enter the date of the appointment (MM/DD/YYYY): ";
+    cin >> appointmentDate;
+
+    // Search for appointments with matching date
+    vector<Appointment> matchingAppointments;
+    for (auto& appointment : appointments) {
+        if (appointment.getAppointmentDate() == appointmentDate) {
+            matchingAppointments.push_back(appointment);
+        }
+    }
+
+    if (matchingAppointments.empty()) {
+        cout << "No appointments found for " << appointmentDate << endl;
+    }
+    else {
+        cout << "Appointments on " << appointmentDate << ":" << endl;
+        for (auto& appointment : matchingAppointments) {
+            // Code to retrieve doctor and patient name for the appointment
+            cout << "Doctor: " << "Dr. " << " | Patient: " << "" << " | Time: " << appointment.getAppointmentTime() << ":00" << endl;
+        }
+    }
+}
+
+int main() {
+    vector<Appointment> appointments;
+
+    while (true) {
+        cout << "\n--\nSelect an option:" << endl;
+        cout << "1. Set an appointment" << endl;
+        cout << "2. View appointment information" << endl;
+        cout << "3. Check appointment status" << endl;
+        cout << "4. Exit" << endl;
+
+        int choice;
+        cin >> choice;
+
+        switch (choice) {
+        case 1:
+            appointment_set(appointments);
+            break;
+        case 2:
+            appointment_view(appointments);
+            break;
+        case 3:
+            appointment_status(appointments);
+            break;
+        case 4:
+            return 0;
+        default:
+            cout << "Invalid choice. Please select again." << endl;
+            break;
+        }
+    }
+
+    return 0;
 }
 
 class Patient

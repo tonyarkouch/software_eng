@@ -45,7 +45,7 @@ void Staff_member::menu_staff_member() {
         switch (choice) {
         case 1:
             //reserved to call appt status function
-            appt_staff.appointment_view(appointments_staff);
+            appt_staff.appointment_status(appointments_staff);
             break;
         case 2:
             //reserved to call information enter function

@@ -2,3 +2,6 @@ hello patient
 patient you are sick
 patient you are unwell
 nothing
+hi there
+this staff test notification
+this is your doctor

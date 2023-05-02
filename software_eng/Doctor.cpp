@@ -44,7 +44,7 @@ void Doctor:: menu_doctor()
         switch (choice) {
         case 1:
             //reserved to call appt view function
-            appt_doc.appointment_view(appointments);
+            appt_doc.appointment_status(appointments);
             break;
         case 2:
             //reserved to call information enter function

@@ -9,13 +9,14 @@
 
 using namespace std;
 
-
+// Implementation of the sendNotificationsPatients() function
 void Notifications::sendNotificationsPatients()
 {
     cout << "What would you like to send today?" << endl;
+    // Promt user to input notification text
     getline(cin, notificationText);
 
-    // Write the notification to the text file
+    // Write the notification to the "doctor_notifications.txt" text file
     ofstream outFile("doctor_notifications.txt", ios::app);
     if (outFile.is_open()) {
         outFile << notificationText << endl;
@@ -27,13 +28,14 @@ void Notifications::sendNotificationsPatients()
 
    
 }
-
+// Implemetation of the sendNotificationsDoctors() function
 void Notifications::sendNotificationsDoctors()
 {
     cout << "What would you like to send today?" << endl;
+    // Promt user to input notification text
     getline(cin, notificationText);
 
-    // Write the notification to the text file
+    // Write the notification to the "patient_notifications.txt" text file
     ofstream outFile("patient_notifications.txt", ios::app);
     if (outFile.is_open()) {
         outFile << notificationText << endl;
@@ -46,12 +48,12 @@ void Notifications::sendNotificationsDoctors()
 }
 
 
-
+// Implementation of the viewNotificationsDoctors() function
 void Notifications::viewNotificationsDoctors()
 {
     cout << "Hello, here are your current notifications:" << endl;
 
-    // Read the notifications from the text file
+    // Read the notifications from the "patient_notifications.txt" text file
     ifstream inFile("patient_notifications.txt");
     string line;
     if (inFile.is_open()) {
@@ -65,11 +67,12 @@ void Notifications::viewNotificationsDoctors()
     }
 }
 
+// Implementation of the viewNotificationsPatients() function
 void Notifications::viewNotificationsPatients()
 {
     cout << "Hello, here are your current notifications:" << endl;
 
-    // Read the notifications from the text file
+    // Read the notifications from the "doctor_notifications.txt" text file
     ifstream inFile("doctor_notifications.txt");
     string line;
     if (inFile.is_open()) {

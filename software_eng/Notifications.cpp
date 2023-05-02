@@ -7,6 +7,8 @@
 #include "Notifications.h"
 
 
+//Written by Fatima Tanvir
+
 using namespace std;
 
 // Implementation of the sendNotificationsPatients() function

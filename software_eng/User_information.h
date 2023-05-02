@@ -8,6 +8,9 @@
 #include <cstdlib>
 #include <limits>
 
+//Helper function wirtten by Madaro Erick Lozamo
+// all the other function are written by Tony Arkouch
+
 using namespace std;
 
 

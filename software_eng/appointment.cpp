@@ -8,6 +8,8 @@
 #include <string>
 #include <algorithm>
 #include "Appointment.h"
+// written by Jesus Centento
+//saveAppointmentsToFile and saveAppointmentsToFile were added by Tony Arkouch
 
 using namespace std;
 
@@ -163,7 +165,7 @@ void Appointment::appointment_status(vector<Appointment>& appointments) {
         cout << "Appointments on " << appointmentDate << ":" << endl;
         for (auto& appointment : matchingAppointments) {
             // Code to retrieve doctor and patient name for the appointment
-            cout << "Doctor: " << "Dr. " <<doctorName  << " | Patient: " <<appointment.getPatientFirstName() <<"" << " | Time: " << appointment.getAppointmentTime() << ":00" << endl;
+            cout << "Doctor: " << " | Patient: " <<appointment.getPatientFirstName() <<"" << " | Time: " << appointment.getAppointmentTime() << ":00" << endl;
         }
     }
 }

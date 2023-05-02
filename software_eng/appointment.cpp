@@ -11,6 +11,7 @@
 
 using namespace std;
 
+//The following is the class for appointment
 Appointment::Appointment() {}
 
 Appointment::Appointment(int doctorAReratments, string appointmentDate, string appointmentTime, string patientFirstName, string patientLastName) {
@@ -69,7 +70,7 @@ vector<Appointment> Appointment::loadAppointmentsFromFile() {
     return appointments;
 }
 
-
+// Function to set an appointment
 void Appointment::appointment_set(vector<Appointment>& appointments) {
     string appointmentDate, patientFirstName, patientLastName;
     int appointmentTime;
@@ -81,6 +82,7 @@ void Appointment::appointment_set(vector<Appointment>& appointments) {
     cin >> patientFirstName;
     cout << "Enter the patient's last name: ";
     cin >> patientLastName;
+    
     // Check if the requested appointment time is available
     bool available = true;
     for (auto& appointment : appointments) {
@@ -97,6 +99,7 @@ void Appointment::appointment_set(vector<Appointment>& appointments) {
         cout << "Enter the name of the doctor: ";
         
         cin >> doctorName;
+        
         // Code to confirm and save the appointment
         appointments.push_back(Appointment(1, appointmentDate, to_string(appointmentTime), patientFirstName, patientLastName));
         saveAppointmentsToFile(appointments);

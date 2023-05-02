@@ -110,6 +110,7 @@ void Appointment::appointment_set(vector<Appointment>& appointments) {
     }
 }
 
+//Code for appointment view
 void Appointment::appointment_view(vector<Appointment>& appointments) {
     appointments = loadAppointmentsFromFile();
     string firstName, lastName;
@@ -133,12 +134,14 @@ void Appointment::appointment_view(vector<Appointment>& appointments) {
     else {
         cout << "Appointments for " << firstName << " " << lastName << ":" << endl;
         for (auto& appointment : matchingAppointments) {
+            
             // Code to retrieve doctor name for the appointment
             cout <<" | Date: " << appointment.getAppointmentDate() << " | Time: " << appointment.getAppointmentTime() << ":00" << endl;
         }
     }
 }
 
+//Code to check the status of the appointment
 void Appointment::appointment_status(vector<Appointment>& appointments) {
     appointments = loadAppointmentsFromFile();
     string appointmentDate;

@@ -24,7 +24,7 @@ void User_io::menu_user_io() {
         cout << "if you are a patient please enter 1" << endl;
         cout << "if you are a staff member please enter 2" << endl;
         cout << "if you are a doctor please enter 3" << endl;
-        cout << "to exit menue please enter 4" << endl;
+        cout << "to exit menu please enter 4" << endl;
         cout << "Enter your choice: ";
         cin >> choice;
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
